@@ -4,9 +4,7 @@ const { readFileSync } = require('fs');
 const connection = require('./connection');
 
 const build = () => {
-  const sql = {
-    text: readFileSync(join(__dirname, 'database.sql')),
-  };
+  const sql = readFileSync(join(__dirname, 'database.sql'), { encoding: 'utf-8' });
   return connection.query(sql);
 };
 
