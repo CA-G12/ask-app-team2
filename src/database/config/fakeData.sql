@@ -1,11 +1,11 @@
 BEGIN;
 
 INSERT INTO 
-  users(username, fname, lname, password, email, token) 
+  users(username, fname, lname, password, email) 
 VALUES
-  ('mustafa100', 'mustafa', 'salem', 'lsafhasjflsahfkalafslhfslaf', 'test@test.com', 'lfksafsagslaghslakhgls'),
-  ('fadezak100', 'fadi', 'zaqout', 'dslfhsdagasgjhdsafhlsafsafhs', 'test@test.pers', 'lksaflflahsfnsafaslhfahfsal'),
-  ('nada100', 'nada','ayesh', 'lsdaflasjflsafjsjfsadfiew', 'best@best.com', 'ljkfajsljalf:hafs;hafusda;sd');
+  ('mustafa100', 'mustafa', 'salem', 'lsafhasjflsahfkalafslhfslaf', 'test@test.com'),
+  ('fadezak100', 'fadi', 'zaqout', 'dslfhsdagasgjhdsafhlsafsafhs', 'test@test.pers'),
+  ('nada100', 'nada','ayesh', 'lsdaflasjflsafjsjfsadfiew', 'best@best.com');
 
 INSERT INTO 
   questions(content, reply, user_id)
