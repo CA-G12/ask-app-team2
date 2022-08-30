@@ -1,0 +1,27 @@
+BEGIN;
+
+DROP TABLE IF EXISTS users, questions, replies CASCADE;
+
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(100) NOT NULL UNIQUE,
+  password VARCHAR(250) NOT NULL,
+  email VARCHAR(100) NOT NULL UNIQUE,
+  token VARCHAR(250) NOT NULL
+);
+
+CREATE TABLE questions (
+  id SERIAL PRIMARY KEY,
+  content TEXT NOT NULL,
+  user_id INT NOT NULL,
+  CONSTRAINT fk_user_id FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE replies (
+  id SERIAL PRIMARY KEY,
+  content TEXT NOT NULL,
+  question_id INT NOT NULL,
+  CONSTRAINT fk_question_id FOREIGN KEY(question_id) REFERENCES questions(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+COMMIT;
