@@ -1,11 +1,9 @@
-require('dotenv').config();
-
 const Joi = require('joi');
 const bcrypt = require('bcrypt');
 
 const addUserQuery = require('../database/queries/signup');
 
-const hashPassword = (password) => bcrypt.hash(password, process.env.SECRET_KEY);
+const hashPassword = (password) => bcrypt.hash(password, 12);
 
 const validateSignupForm = Joi.object({
   username: Joi.string().alphanum().min(5).max(20)
@@ -29,4 +27,7 @@ const addUser = (req, res, next) => {
     }).catch((err) => next(err));
 };
 
-module.exports = { addUser };
+module.exports = {
+  addUser,
+  hashPassword,
+};
