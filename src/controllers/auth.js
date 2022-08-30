@@ -1,6 +1,11 @@
+require('dotenv').config();
+
 const Joi = require('joi');
+const bcrypt = require('bcrypt');
 
 const addUserQuery = require('../database/queries/signup');
+
+const hashPassword = (password) => bcrypt.hash(password, process.env.SECRET_KEY);
 
 const validateSignupForm = Joi.object({
   username: Joi.string().alphanum().min(5).max(20)
@@ -14,18 +19,13 @@ const validateSignupForm = Joi.object({
 });
 
 const addUser = (req, res, next) => {
-  const {
-    username, fname, lname, password, email,
-  } = req.body;
-  validateSignupForm.validateAsync({
-    username, fname, lname, password, email,
-  })
-    .then(() => {
-      addUserQuery({
-        username, fname, lname, password, email,
-      })
-        .then((data) => res.json({ message: `${data.rowCount} rows were added successfully!!!` }))
-        .catch((err) => next(err));
+  hashPassword(req.body.password)
+    .then((hashed) => {
+      validateSignupForm.validateAsync(req.body).then(() => {
+        addUserQuery({ ...req.body, password: hashed })
+          .then((data) => res.json({ message: `${data.rowCount} rows were added successfully!!!` }))
+          .catch((err) => next(err));
+      }).catch((err) => next(err));
     }).catch((err) => next(err));
 };
 
