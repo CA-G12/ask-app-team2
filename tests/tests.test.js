@@ -12,23 +12,20 @@ test('initial', () => {
 beforeEach(() => build());
 afterAll(() => connection.end());
 
-describe('Testing "/api/v1/signup" route', () => {
-  it('test the returned object', (done) => {
-    supertest(app)
-      .post('api/v1/signup')
-      .end((err, res) => {
-        if (err) done(err);
-        expect(typeof res.body).toBe('object');
-        done();
-      });
-  });
-  it('test the returned object', (done) => {
-    supertest(app)
-      .post('api/v1/signup')
-      .end((err, res) => {
-        if (err) done(err);
-        expect(res.type).toBe('text/html');
-        done();
-      });
-  });
+it('tests the returned object', (done) => {
+  supertest(app)
+    .post('/api/v1/auth/signup')
+    .send({
+      username: 'mmmmm',
+      fname: 'csdcsdds',
+      lname: 'zaqout',
+      password: 'AAvdd124',
+      email: 'fada@sld.com',
+    })
+    .expect(200)
+    .end((err, res) => {
+      if (err) return done(err);
+      expect(res.body.message).toBe('1 rows were added successfully!!!');
+      return done();
+    });
 });
