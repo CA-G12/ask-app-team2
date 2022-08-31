@@ -1,4 +1,7 @@
-const { getProfile } = require('./profile');
-const { getLogin } = require('./login');
+const { getQuestion } = require('./questions');
+const { addUser } = require('./auth');
 
-module.exports = { getProfile, getLogin };
+module.exports = {
+  getQuestion,
+  addUser,
+};

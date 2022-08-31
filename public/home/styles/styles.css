@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
+* {
+   padding: 0;
+   margin: 0; 
+}
+
+:root {
+    --maincolor: rgb(209,129,46);
+    --bodycolor: rgb(241,241,241);
+    --buttons: rgb(29, 27, 27);
+}
+
+body {
+    background-color: rgb(242,241,241);
+    font-family: 'Inter', sans-serif;
+}
+
+a {
+ text-decoration: none;
+}
+
+.container {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+
+}
+
+.logo img {
+    height: 18rem;
+    width: 18rem;
+}
+
+.logo h1 {
+    font-size: 3rem;
+}
+
+.app {
+    color: var(--maincolor);
+}
+
+.buttons{
+    margin-top: 5rem;
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    justify-content: center;
+}
+
+.buttons a {
+    text-align: center;
+    width: 15%;
+    padding: 0.7rem;
+    margin: 1rem;
+    border: none;
+    border-radius: 1rem;
+    background-color: var(--buttons);
+    color: white;
+    font-size: 1.2rem;
+}
+
+.buttons a:hover {
+    cursor: pointer;
+    background-color: var(--maincolor);
+    color: white;
+    font-size: 1.2rem;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search input {
+   width: 40%;
+   padding: 1.2rem;
+   border-style: none;
+   border-radius: 1rem 0 0 1rem;
+}
+
+.search input:focus {
+    outline: none !important;
+    font-size: 1rem;
+}
+
+.search input::placeholder {
+    font-size: 1rem;
+}
+
+.search button {
+    width: 10%;
+    padding: 1rem;
+    border: none;
+    border-radius:0 1rem 1rem 0;
+    background-color: var(--maincolor);
+    color: white;
+    font-size: 1.2rem;
+}
+
+.search button:hover {
+    cursor: pointer;
+    background-color: var(--buttons);
+    color: white;
+}
