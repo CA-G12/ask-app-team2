@@ -5,11 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="stylesheet" href="/pages/signup/styles/styles.css">
 </head>
 <body>
     <body>
-        <form action="/signup" class="login-form">
+        <form action="/signup"method="post" class="login-form">
             <h1>signup</h1>
             <div class="form-input-material">
               <input
@@ -49,15 +49,43 @@
               </div>
               <div class="form-input-material">
                 <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  placeholder="  enter your  email"
+                  type="confirmpassword"
+                  name="confirmpassword"
+                  id="confirmpassword"
+                  placeholder="   confirm password"
+                  class="form-control-material"
+                />
+              </div>
+              <div class="form-input-material">
+                <input
+                  type="number"
+                  name="phone"
+                  id="phone"
+                  placeholder="  enter your  phone"
+                  class="form-control-material"
+                />
+              </div>
+              <div class="form-input-material">
+                <input
+                  type="text"
+                  name="avatar"
+                  id="avatar"
+                  placeholder="  enter your  avatar link"
+                  class="form-control-material"
+                />
+              </div>
+              <div class="form-input-material">
+                <input
+                  type="text"
+                  name="cover"
+                  id="cover"
+                  placeholder="  enter your  cover link"
                   class="form-control-material"
                 />
               </div>
              
             <button type="submit" class="btn btn-ghost">signup</button>
           </form>  
+    <script src= "/pages/signup/js/index.js"></script>
 </body>
 </html>
