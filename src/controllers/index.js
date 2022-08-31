@@ -1,7 +1,8 @@
 const { getQuestion } = require('./questions');
-const { addUser } = require('./auth');
+const { addUser, login } = require('./auth');
 
 module.exports = {
   getQuestion,
   addUser,
+  login,
 };
