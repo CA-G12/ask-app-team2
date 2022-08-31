@@ -1,0 +1,7 @@
+// eslint-disable-next-line linebreak-style
+
+const connection = require('../config/connection');
+
+const getAllUsers = (username) => connection.query(`Select * from users where username = '${username}'`);
+
+module.exports = getAllUsers;
