@@ -28,6 +28,8 @@ describe('test sign up route', () => {
         lname: 'zaqout',
         email: 'fadyzaqut@gmaul.com',
         password: 'ABab123434',
+        avatar: 'https://t4.ftcdn.net/jpg/02/29/75/83/360_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg',
+        cover: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkHBF1S5y6ZJlJlq42dZLkpN2mNMoTzVVLMA&usqp=CAU',
       })
       .expect(201)
       .end((err, res) => {
@@ -43,8 +45,8 @@ describe('test login', () => {
     supertest(app)
       .post('/api/v1/auth/login')
       .send({
-        'username': 'mynameinitials',
-        'password': 'ABab123434',
+        username: 'mynameinitials',
+        password: 'ABab123434',
       })
       .end((err, res) => {
         if (err) return done(err);
