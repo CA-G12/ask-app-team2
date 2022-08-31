@@ -1,6 +1,7 @@
 const Joi = require('joi');
 const bcrypt = require('bcrypt');
-const jwt=require('jsonwebtoken')
+const jwt=require('jsonwebtoken');
+
 
 const addUserQuery = require('../database/queries/signup');
 const getAllUsers = require('../database/queries/getAllUsersQuery');
@@ -23,7 +24,7 @@ const addUser = (req, res, next) => {
     .then((hashed) => {
       validateSignupForm.validateAsync(req.body).then(() => {
         addUserQuery({ ...req.body, password: hashed })
-          .then((data) => res.json({ message: `${data.rowCount} rows were added successfully!!!` }))
+          .then((data) => res.status(201).json(data.rows))
           .catch((err) => next(err));
       }).catch((err) => next(err));
     }).catch((err) => next(err));
@@ -46,10 +47,10 @@ const login = (req, res, next) => {
   validatelogin.validateAsync(req.body).then(() => {
     getAllUsers(username).then((data) => {
       const hashedPassword = data.rows[0].password;
-      bcrypt.compare(hashedPassword, password).then((user) => {
+      bcrypt.compare(password, hashedPassword).then((user) => {
         if (user) {
           const token = generatetoken(user);
-          res.cookie('token', token);
+          res.cookie('token', token).send();
         } else res.status(401).json({ mg: 'wrong credintioanls' });
       });
     }).catch((err) => next(err));
