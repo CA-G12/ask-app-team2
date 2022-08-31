@@ -1,7 +1,7 @@
+require('dotenv').config();
 const Joi = require('joi');
 const bcrypt = require('bcrypt');
-const jwt=require('jsonwebtoken');
-
+const jwt = require('jsonwebtoken');
 
 const addUserQuery = require('../database/queries/signup');
 const getAllUsers = require('../database/queries/getAllUsersQuery');
@@ -14,6 +14,8 @@ const validateSignupForm = Joi.object({
   fname: Joi.string().regex(/[a-zA-Z]*/),
   lname: Joi.string().regex(/[a-zA-Z]*/),
   email: Joi.string().email().regex(/^[a-zA-Z0-9]?.*@[a-zA-z0-9]{1,}\.[a-zA-Z]{1,}$/).required(),
+  avatar: Joi.string().required(),
+  cover: Joi.string().required(),
   password: Joi.string().regex(/^(?=.+[A-Z])(?=.+[a-z])(?=.+[0-9])[a-zA-Z0-9]{8,}$/).required(),
   confirmPassword: Joi.string().valid(Joi.ref('password')),
   phone: Joi.string().length(10),
@@ -38,7 +40,7 @@ const validatelogin = Joi.object({
     .required(),
 });
 
-const generatetoken = (user) => jwt.sign({ id: user.id, username: user.name }, 'mySecretKey', {
+const generatetoken = (user) => jwt.sign({ id: user.id, username: user.name }, process.env.SECRET_KEY, {
   expiresIn: '1d',
 });
 

@@ -1,8 +1,8 @@
-const { getQuestion } = require('./questions');
+const { getQuestionController } = require('./questions');
 const { addUser, login } = require('./auth');
 
 module.exports = {
-  getQuestion,
+  getQuestionController,
   addUser,
   login,
 };
