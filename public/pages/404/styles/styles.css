@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+:root {
+  --main-color: rgb(209,129,46);
+  --body-color: rgb(241,241,241);
+}
+
+
+body {
+  width: 100%;
+  height: 100vh;
+  background-color: var( --body-color);
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.ops {
+  font-size: 6rem;
+  margin-bottom: 5rem;
+  color: var(--main-color);
+}
+
+h2 {
+  font-size: xx-large;
+  margin-bottom: 1rem;
+}
