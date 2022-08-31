@@ -1,4 +1,5 @@
 const getQuestionsQuery = require('../database/queries/getUserQuestions');
+require('dotenv').config();
 
 const getQuestions = (req, res, next) => {
   const { username } = req.query;
@@ -7,4 +8,12 @@ const getQuestions = (req, res, next) => {
     .catch((err) => next(err));
 };
 
-module.exports = { getQuestions };
+const getQuestion = require('../database/queries/getQuestions');
+
+const getQuestionController = (req, res, next) => {
+  getQuestion(req.user.id)
+    .then((data) => res.json(data.rows))
+    .catch((err) => next(err));
+};
+
+module.exports = { getQuestionController, getQuestions };

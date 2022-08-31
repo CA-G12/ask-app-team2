@@ -4,25 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="stylesheet" href="/pages/questions/styles/styles.css">
     <title>Questions</title>
 </head>
 <body>
-
-    <nav class="navbar">
-
+    <div class="container">
+    <header class="header">
         <section class="left">
-         <a class="logo">Ask<span class="app">App</span></a>
+            <a class="logo">Ask<span class="app">App</span></a>
         </section>
- 
- 
         <section class="right">
-         <a href=""><i class="fa-solid fa-comment"></i></a>
+            <a href=""><i class="fa-solid fa-comment"></i></a>
         </section>
-     </nav>
-
-
+        </header>
+        <section class="questions"></section>
+        <section class="reply-box">
+            <section class="buttons">
+                <button type="button" class="post">Post</button>
+                <i class="fa-solid fa-rectangle-xmark x-icon"></i>
+            </section>
+            <textarea name="reply" id="reply" placeholder="Put your reply here ..."></textarea>
+        </section>
+    </div>
     <script src="https://kit.fontawesome.com/0c259b04b4.js" crossorigin="anonymous"></script>
-    <script src="./js/index.js"></script>
+    <script src="/pages/questions/js/index.js"></script>
 </body>
 </html>

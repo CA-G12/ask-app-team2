@@ -8,6 +8,8 @@ CREATE TABLE users (
   fname VARCHAR(50) NOT NULL,
   lname VARCHAR(50) NOT NULL,
   password VARCHAR(250) NOT NULL,
+  avatar VARCHAR(500) NOT NULL,
+  cover VARCHAR(500) NOT NULL,
   email VARCHAR(100) NOT NULL UNIQUE
 );
 

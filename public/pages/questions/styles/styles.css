@@ -2,28 +2,42 @@
 * {
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 :root {
-    --maincolor: rgb(209,129,46);
-    --bodycolor: rgb(241,241,241);
+    --main-color: rgb(209,129,46);
+    --body-color: rgb(241,241,241);
 }
 
 
 body {
-    background-color: var( --bodycolor);
-    font-family: 'Inter', sans-serif;
+    width: 100%;
+    height: 100vh;
+    background-color: var( --body-color);
 }
 
+.container {
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+    position: relative;
+}
 
-.navbar {
+.header {
+    width: 100%;
+    height: 7vh !important;
     padding: 1rem;
     background-color: white;
     height: 2rem;
     display: flex;
     justify-content: space-around;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
 }
 
 .right {
@@ -46,7 +60,7 @@ body {
 }
 
 .app {
-    color: var(--maincolor);
+    color: var(--main-color);
     font-weight: 900;
 }
 
@@ -60,4 +74,87 @@ body {
 
 .checked {
     border-bottom: 1px solid red;
+}
+
+.questions {
+    width: 60%;
+}
+
+.question-reply {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: white;
+    margin-bottom: 2rem;
+}
+
+.question-reply .user-info {
+    width: 20%;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.question-reply .user-info img {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+}
+
+.question-reply .question {
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--body-color);
+}
+
+.question-reply .reply {
+    width: 9rem;
+    height: 2rem;
+    margin: 0 0 1rem 1rem;
+}
+
+.reply-box {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 100;
+    background-color: rgba(0, 0, 0  , 0.289);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 15rem;
+    gap: 2rem;
+    display: none;
+}
+
+.reply-box .buttons {
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.reply-box .buttons .post {
+    width: 5rem;
+    height: 2rem;
+    font-size: medium;
+    cursor: pointer;
+}
+
+.reply-box .buttons i {
+    color: white;
+    font-size: 1.5rem ;
+}
+
+.reply-box textarea {
+    width: 40%;
+    height: 30rem;
+    padding: 1rem;
+}
+
+::placeholder {
+    color: gray;
 }

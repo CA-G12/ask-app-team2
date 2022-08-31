@@ -1,9 +1,7 @@
-const { getQuestions } = require('./questions');
+const { getQuestion } = require('./questions');
 const { addUser } = require('./auth');
-const { getUsersData } = require('./users');
 
 module.exports = {
-  getQuestions,
+  getQuestion,
   addUser,
-  getUsersData,
 };
