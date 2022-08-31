@@ -2,6 +2,7 @@ const questionCount = document.querySelector('.old-questions');
 const profileInfo = document.querySelector('.profile-info');
 
 const createQuestion = (obj) => {
+  console.log(obj);
   const questionSection = document.createElement('div');
   const questionForm = document.createElement('div');
   const questionContent = document.createElement('p');
@@ -18,7 +19,7 @@ const createQuestion = (obj) => {
   const answer = document.createElement('div');
 
   const img = document.createElement('img');
-  img.src = 'https://pbs.twimg.com/profile_images/1559252590696828929/BsqrxPyi_400x400.jpg';
+  img.src = obj.avatar;
   answer.appendChild(img);
 
   const answerDetails = document.createElement('div');
@@ -72,12 +73,13 @@ const getURL = () => {
 };
 
 const createProfile = (obj) => {
+  console.log(obj);
   const profileSection = document.createElement('section');
   const cover = document.createElement('img');
-  cover.src = 'https://pbs.twimg.com/profile_banners/1236621082213462016/1661234924/1500x500';
+  cover.src = obj.cover;
   cover.classList.add('cover');
   const avater = document.createElement('img');
-  avater.src = 'https://pbs.twimg.com/profile_images/1559252590696828929/BsqrxPyi_400x400.jpg';
+  avater.src = obj.avatar;
   avater.classList.add('avatar');
   profileSection.appendChild(cover);
   profileSection.appendChild(avater);
@@ -126,7 +128,6 @@ const createProfile = (obj) => {
 
   profileInfo.appendChild(stats);
 };
-
 
 fetch(`/api/v1/questions/users-question?username=${getURL()}`)
   .then((data) => data.json())
