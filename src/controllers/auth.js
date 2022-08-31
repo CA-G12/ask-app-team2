@@ -1,6 +1,6 @@
 const Joi = require('joi');
 const bcrypt = require('bcrypt');
-const jwt=require('jsonwebtoken")
+const jwt=require('jsonwebtoken')
 
 const addUserQuery = require('../database/queries/signup');
 const getAllUsers = require('../database/queries/getAllUsersQuery');
