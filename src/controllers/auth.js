@@ -1,6 +1,6 @@
 const Joi = require('joi');
 const bcrypt = require('bcrypt');
-const jwt=require('jsonwebtoken")
+const jwt=require('jsonwebtoken');
 
 const addUserQuery = require('../database/queries/signup');
 const getAllUsers = require('../database/queries/getAllUsersQuery');
@@ -46,7 +46,7 @@ const login = (req, res, next) => {
   validatelogin.validateAsync(req.body).then(() => {
     getAllUsers(username).then((data) => {
       const hashedPassword = data.rows[0].password;
-      bcrypt.compare(hashedPassword, password).then((user) => {
+      bcrypt.compare(password, hashedPassword).then((user) => {
         if (user) {
           const token = generatetoken(user);
           res.cookie('token', token);
