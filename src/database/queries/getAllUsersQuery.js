@@ -1,4 +1,4 @@
- const connection = require('../config/connection');
+const connection = require('../config/connection');
 
 const getAUser = (username) => connection.query(`SELECT * FROM USERS WHERE username = '${username}'`);
 
