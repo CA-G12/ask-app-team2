@@ -250,13 +250,14 @@ textarea:focus{
 
   .question-from :last-child{
     color: var(--maincolor);
+    font-size: 0.9rem;
   }
 
   .answer {
     display: flex;   
     align-items: center;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 
  }
 
@@ -287,6 +288,7 @@ textarea:focus{
 
  .reactions {
     margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
     display: flex;
     font-size: 1rem;
  }
@@ -300,7 +302,17 @@ textarea:focus{
     color: black;
 }
 
-.reactions a:hover {
+.love i:hover{
     transform: scale(1.1);
     color: red;
+}
+
+.share i:hover{
+  transform: scale(1.1);
+  color: green;
+}
+
+.retweet i:hover{ 
+  transform: scale(1.1);
+  color: blue;
 }

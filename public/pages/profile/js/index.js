@@ -1,10 +1,11 @@
 const questionCount = document.querySelector('.old-questions');
+const profileInfo = document.querySelector('.profile-info');
 
-const createQuestion = () => {
+const createQuestion = (obj) => {
   const questionSection = document.createElement('div');
   const questionForm = document.createElement('div');
   const questionContent = document.createElement('p');
-  questionContent.textContent = 'What\'s your name?';
+  questionContent.textContent = obj.content;
 
   const userTitle = document.createElement('p');
   userTitle.textContent = 'anonymous';
@@ -23,7 +24,7 @@ const createQuestion = () => {
   const answerDetails = document.createElement('div');
 
   const username = document.createElement('p');
-  username.textContent = 'fadezak100';
+  username.textContent = obj.username;
   const date = document.createElement('p');
   date.textContent = '27/8/2022';
   answerDetails.classList.add('answer-details');
@@ -37,7 +38,7 @@ const createQuestion = () => {
   const response = document.createElement('div');
   response.classList.add('response');
   const responseContent = document.createElement('p');
-  responseContent.textContent = 'My Name is Fadi';
+  responseContent.textContent = obj.reply;
   response.appendChild(responseContent);
   questionSection.appendChild(response);
 
@@ -52,6 +53,9 @@ const createQuestion = () => {
   retweet.innerHTML = '<i class="fa-solid fa-retweet"></i>';
   const share = document.createElement('a');
   share.innerHTML = '<i class="fa-solid fa-share"></i>';
+  love.classList.add('love');
+  share.classList.add('share');
+  retweet.classList.add('retweet');
   reactions.appendChild(love);
   reactions.appendChild(retweet);
   reactions.appendChild(share);
@@ -61,5 +65,81 @@ const createQuestion = () => {
   questionCount.appendChild(questionSection);
 };
 
-createQuestion();
-createQuestion();
+const getURL = () => {
+  const url = location.href;
+  const username = url.split('=')[1];
+  return username;
+};
+
+const createProfile = (obj) => {
+  const profileSection = document.createElement('section');
+  const cover = document.createElement('img');
+  cover.src = 'https://pbs.twimg.com/profile_banners/1236621082213462016/1661234924/1500x500';
+  cover.classList.add('cover');
+  const avater = document.createElement('img');
+  avater.src = 'https://pbs.twimg.com/profile_images/1559252590696828929/BsqrxPyi_400x400.jpg';
+  avater.classList.add('avatar');
+  profileSection.appendChild(cover);
+  profileSection.appendChild(avater);
+  profileSection.classList.add('profile');
+  profileInfo.appendChild(profileSection);
+
+  const nickName = document.createElement('section');
+  nickName.classList.add('nick-name');
+
+  const nickNameParagraph = document.createElement('p');
+  nickNameParagraph.textContent = obj.username;
+  nickName.appendChild(nickNameParagraph);
+  profileInfo.appendChild(nickName);
+
+  const stats = document.createElement('section');
+  stats.classList.add('stats');
+  const followingDiv = document.createElement('div');
+  const followingPara = document.createElement('p');
+  followingPara.textContent = '0';
+  const statsTitle = document.createElement('p');
+  statsTitle.textContent = 'Following';
+  statsTitle.classList.add('title');
+  followingDiv.appendChild(followingPara);
+  followingPara.appendChild(statsTitle);
+  stats.appendChild(followingDiv);
+
+  const followersDiv = document.createElement('div');
+  const followersPara = document.createElement('p');
+  followersPara.textContent = obj.count;
+  const statsTitleFoll = document.createElement('p');
+  statsTitleFoll.textContent = 'Questions';
+  statsTitleFoll.classList.add('title');
+  followersDiv.appendChild(followersPara);
+  followersDiv.appendChild(statsTitleFoll);
+  stats.appendChild(followersDiv);
+
+  const questionsCount = document.createElement('div');
+  const questionPar = document.createElement('p');
+  questionPar.textContent = '0';
+  const questCo = document.createElement('p');
+  questCo.textContent = 'Followers';
+  questCo.classList.add('title');
+  questionsCount.appendChild(questionPar);
+  questionsCount.appendChild(questCo);
+  stats.appendChild(questionsCount);
+
+  profileInfo.appendChild(stats);
+};
+
+
+fetch(`/api/v1/questions/users-question?username=${getURL()}`)
+  .then((data) => data.json())
+  .then((data) => {
+    data.forEach((el) => {
+      createQuestion(el);
+    });
+  })
+  .catch(console.log);
+
+fetch(`/api/v1/users/profile?username=${getURL()}`)
+  .then((data) => data.json())
+  .then((data) => {
+    createProfile(data[0]);
+  })
+  .catch(console.log);
