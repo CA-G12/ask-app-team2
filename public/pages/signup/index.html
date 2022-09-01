@@ -9,7 +9,7 @@
 </head>
 <body>
     <body>
-        <form action="/signup"method="post" class="login-form">
+        <form class="login-form">
             <h1>signup</h1>
             <div class="form-input-material">
               <input
@@ -17,6 +17,15 @@
                 name="username"
                 id="username"
                 placeholder="enter your user name  "
+                class="form-control-material"
+              />
+            </div>
+            <div class="form-input-material">
+              <input
+                type="email"
+                name="email"
+                id="email"
+                placeholder="enter your user email"
                 class="form-control-material"
               />
             </div>
@@ -49,7 +58,7 @@
               </div>
               <div class="form-input-material">
                 <input
-                  type="confirmpassword"
+                  type="password"
                   name="confirmpassword"
                   id="confirmpassword"
                   placeholder="   confirm password"
@@ -83,9 +92,8 @@
                   class="form-control-material"
                 />
               </div>
-             
-            <button type="submit" class="btn btn-ghost">signup</button>
           </form>  
+          <button class="signup btn btn-ghost">signup</button>
     <script src= "/pages/signup/js/index.js"></script>
 </body>
 </html>

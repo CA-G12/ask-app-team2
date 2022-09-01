@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 const verifyAccessToken = (req, res, next) => {
+  console.log("here");
   const { token } = req.cookies;
   if (!token) return res.status(401).json({ error: 'unauthenticated' });
 

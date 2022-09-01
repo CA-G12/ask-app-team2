@@ -1,10 +1,10 @@
 const questionCount = document.querySelector('.old-questions');
 const profileInfo = document.querySelector('.profile-info');
-const ask = document.querySelector('.ask');
-const question = document.querySelector('.question-input');
+const logout = document.querySelector('.logout');
+const app = document.querySelector('.app');
+const iconLink = document.querySelector('.icon');
 
 const createQuestion = (obj) => {
-  console.log(obj);
   const questionSection = document.createElement('div');
   const questionForm = document.createElement('div');
   const questionContent = document.createElement('p');
@@ -70,12 +70,19 @@ const createQuestion = (obj) => {
 
 const getURL = () => {
   const url = location.href;
-  const username = url.split('=')[1];
+  const username = url.split('/')[7];
   return username;
 };
+iconLink.href = `/pages/questions?q=${getURL()}`;
 
+const nothingToShow = () => {
+  const errorMsg = document.createElement('p');
+  errorMsg.textContent = 'This user hasn\'t answer any questions';
+  errorMsg.classList.add('error');
+  questionCount.appendChild('errorMsg');
+}
 const createProfile = (obj) => {
-  console.log(obj);
+  // console.log(obj);
   const profileSection = document.createElement('section');
   const cover = document.createElement('img');
   cover.src = obj.cover;
@@ -110,7 +117,7 @@ const createProfile = (obj) => {
 
   const followersDiv = document.createElement('div');
   const followersPara = document.createElement('p');
-  followersPara.textContent = obj.count;
+  followersPara.textContent = obj.count || 0;
   const statsTitleFoll = document.createElement('p');
   statsTitleFoll.textContent = 'Questions';
   statsTitleFoll.classList.add('title');
@@ -131,33 +138,30 @@ const createProfile = (obj) => {
   profileInfo.appendChild(stats);
 };
 
-ask.addEventListener('click', () => {
-  const questionValue = question.value;
-  fetch('/api/v1/questions/send-question', {
-    method: 'POST',
-    headers: {
-      'content-type': 'application/json',
-    },
-    body: JSON.stringify({
-      question: questionValue,
-      username: getURL(),
-    }),
-  }).then((data) => console.log(data))
-    .catch((err) => console.log(err));
+logout.addEventListener('click', () => {
+  fetch('/api/v1/auth/logout').then(() => {
+    location.href = '/';
+  });
 });
 
 fetch(`/api/v1/questions/users-question?username=${getURL()}`)
   .then((data) => data.json())
   .then((data) => {
-    data.forEach((el) => {
-      createQuestion(el);
-    });
+    console.log(data);
+    if (data.length > 0) {
+      data.forEach((el) => {
+        createQuestion(el);
+      });
+    } else {
+      nothingToShow();
+    }
   })
   .catch(console.log);
 
 fetch(`/api/v1/users/profile?username=${getURL()}`)
   .then((data) => data.json())
   .then((data) => {
+    app.textContent = data[0].username;
     createProfile(data[0]);
   })
   .catch(console.log);

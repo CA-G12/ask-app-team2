@@ -16,7 +16,7 @@ CREATE TABLE users (
 CREATE TABLE questions (
   id SERIAL PRIMARY KEY,
   content TEXT NOT NULL,
-  reply TEXT NOT NULL,
+  reply TEXT,
   user_id INT NOT NULL,
   CONSTRAINT fk_user_id FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
