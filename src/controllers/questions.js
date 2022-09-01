@@ -23,12 +23,12 @@ const getQuestions = (req, res, next) => {
     .catch((err) => next(err));
 };
 
-const sendQuestion = (req, res) => {
+const sendQuestion = (req, res, next) => {
   const { question, username } = req.body;
-  getUsersID(username).then(data => {
-    id = (data.rows[0].id);
+  getUsersID(username).then((data) => {
+    const { id } = data.rows[0];
     sendNewQuestion(question, id)
-      .then( (data) => res.status(201).json('Added!'))
+      .then(() => res.status(201).json('Added!'))
       .catch((err) => next(err));
   });
 };

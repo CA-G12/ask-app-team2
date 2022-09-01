@@ -8,5 +8,4 @@ router.use('/auth', auth);
 router.use('/users', users);
 router.use('/questions', questions);
 
-
 module.exports = router;
