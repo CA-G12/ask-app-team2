@@ -1,4 +1,4 @@
-const { getQuestionController, getQuestions, sendQuestion } = require('./questions');
+const { getQuestionController, getQuestions, sendQuestion, sendReply } = require('./questions');
 const { addUser, login, logout } = require('./auth');
 const { getUsersData, getUserProfile } = require('./users');
 const { notFound, serverError } = require('./errors');
@@ -19,4 +19,5 @@ module.exports = {
   getQuestionsPage,
   profileNotSingedIn,
   sendQuestion,
+  sendReply,
 };
