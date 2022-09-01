@@ -69,8 +69,9 @@ const createQuestion = (obj) => {
 };
 
 const getURL = () => {
-  const url = location.href;
+  const url = window.location.href;
   const username = url.split('=')[1];
+  console.log(username);
   return username;
 };
 
@@ -142,7 +143,9 @@ ask.addEventListener('click', () => {
       question: questionValue,
       username: getURL(),
     }),
-  }).then((data) => console.log(data))
+  }).then((data) => {
+    question.value = '';
+  })
     .catch((err) => console.log(err));
 });
 

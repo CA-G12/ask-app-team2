@@ -69,7 +69,7 @@ const createQuestion = (obj) => {
 };
 
 const getURL = () => {
-  const url = location.href;
+  const url = window.location.href;
   const username = url.split('/')[7];
   return username;
 };
@@ -80,9 +80,8 @@ const nothingToShow = () => {
   errorMsg.textContent = 'This user hasn\'t answer any questions';
   errorMsg.classList.add('error');
   questionCount.appendChild('errorMsg');
-}
+};
 const createProfile = (obj) => {
-  // console.log(obj);
   const profileSection = document.createElement('section');
   const cover = document.createElement('img');
   cover.src = obj.cover;
@@ -140,7 +139,7 @@ const createProfile = (obj) => {
 
 logout.addEventListener('click', () => {
   fetch('/api/v1/auth/logout').then(() => {
-    location.href = '/';
+    window.location.href = '/';
   });
 });
 

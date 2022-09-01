@@ -6,7 +6,7 @@ const icon = document.querySelector('.icon');
 const greeting = document.querySelector('.app');
 
 const getURL = () => {
-  const url = location.href;
+  const url = window.location.href;
   const username = url.split('=')[1];
   return username;
 };
