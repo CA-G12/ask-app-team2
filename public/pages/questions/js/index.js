@@ -4,6 +4,9 @@ const replyButtons = document.querySelectorAll('.reply');
 const xIcon = document.querySelector('.x-icon');
 const icon = document.querySelector('.icon');
 const greeting = document.querySelector('.app');
+const post = document.querySelector('.post');
+const replyBox = document.getElementById('reply');
+
 
 const getURL = () => {
   const url = window.location.href;
@@ -27,7 +30,6 @@ const getTime = () => {
 };
 
 const createQuestionBox = (obj) => {
-  console.log(obj);
   const questionsSection = document.querySelector('.questions');
 
   const questionReply = document.createElement('section');
@@ -55,6 +57,8 @@ const createQuestionBox = (obj) => {
 
   const replyButton = document.createElement('button');
   replyButton.classList.add('reply');
+  replyButton.addEventListener('click', showReplyBox);
+  replyButton.textContent = 'reply';
   replyButton.type = 'button';
   userInfoSection.appendChild(replyButton);
 };
@@ -74,3 +78,18 @@ xIcon.addEventListener('click', hideReplyBox);
 
 icon.href = `/api/v1/users/profile/${getURL()}`;
 greeting.textContent = getURL();
+
+post.addEventListener('click', ()=>{
+  fetch('/api/v1/questions/send-reply', {
+    method: 'post',
+    headers: {
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify({
+      username: getURL(),
+      contnet: replyBox.value,
+    }),
+  }).then((data) => console.log(data))
+})
+
+

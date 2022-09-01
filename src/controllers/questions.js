@@ -4,6 +4,7 @@ const getQuestion = require('../database/queries/getQuestions');
 const getQuestionsQuery = require('../database/queries/getUserQuestions');
 const getUsersID = require('../database/queries/getUsersID');
 const sendNewQuestion = require('../database/queries/sendNewQuestion');
+const sendNewReply = require('../database/queries/addReply');
 
 const getQuestionController = (req, res, next) => {
   const username = req.query.q;
@@ -33,4 +34,15 @@ const sendQuestion = (req, res, next) => {
   });
 };
 
-module.exports = { getQuestionController, getQuestions, sendQuestion };
+const sendReply = (req, res, next) => {
+  const { contnet, username } = req.body;
+  getUsersID(username).then(data => console.log(data.rows[0].id));
+  // then((data) => {
+  //   const { id } = data.rows[0];
+  //   sendNewReply(contnet, id)
+  //     .then(() => res.status(201).json('Added!'))
+  //     .catch((err) => console.log(err));
+  // });
+};
+
+module.exports = { getQuestionController, getQuestions, sendQuestion, sendReply };

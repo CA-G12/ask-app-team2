@@ -81,6 +81,9 @@ body {
 }
 
 .question-reply {
+    display: flex;
+    flex: 3;
+    flex-direction: column;
     width: 100%;
     padding: 0.5rem;
     background-color: white;
@@ -91,6 +94,8 @@ body {
     width: 20%;
     padding: 0.5rem;
     display: flex;
+    flex-direction: column;
+
     align-items: center;
     gap: 0.5rem;
     margin-bottom: 1rem;
