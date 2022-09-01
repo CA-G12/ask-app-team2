@@ -5,6 +5,7 @@ const app = document.querySelector('.app');
 const iconLink = document.querySelector('.icon');
 
 const createQuestion = (obj) => {
+  console.log(obj);
   const questionSection = document.createElement('div');
   const questionForm = document.createElement('div');
   const questionContent = document.createElement('p');
@@ -146,11 +147,11 @@ logout.addEventListener('click', () => {
 fetch(`/api/v1/questions/users-question?username=${getURL()}`)
   .then((data) => data.json())
   .then((data) => {
-    console.log(data);
     if (data.length > 0) {
-      data.forEach((el) => {
-        createQuestion(el);
-      });
+      questionCount.innerHTML = '';
+      for (let i = data.length - 1; i >= 0; i--) {
+        createQuestion(data[i]);
+      }
     } else {
       nothingToShow();
     }

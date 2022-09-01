@@ -1,7 +1,11 @@
 const router = require('express').Router();
 const verifyAccessToken = require('./middlewares/verifyAccessToken');
 
-const { getQuestions, getQuestionController, sendQuestion, sendReply } = require('../controllers');
+const {
+  getQuestions,
+  getQuestionController,
+  sendQuestion, sendReply,
+} = require('../controllers');
 
 router.get('/users-question', getQuestions);
 router.post('/send-question', sendQuestion);
