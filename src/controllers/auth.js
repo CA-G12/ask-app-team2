@@ -1,3 +1,5 @@
+const { join } = require('path');
+
 require('dotenv').config();
 const Joi = require('joi');
 const bcrypt = require('bcrypt');
@@ -27,9 +29,9 @@ const addUser = (req, res, next) => {
       validateSignupForm.validateAsync(req.body).then(() => {
         addUserQuery({ ...req.body, password: hashed })
           .then((data) => res.status(201).json(data.rows))
-          .catch((err) => next(err));
-      }).catch((err) => next(err));
-    }).catch((err) => next(err));
+          .catch((err) => console.log(err));
+      }).catch((err) => console.log(err));
+    }).catch((err) => console.log(err));
 };
 
 const validatelogin = Joi.object({
@@ -45,6 +47,7 @@ const generatetoken = (user) => jwt.sign({ id: user.id, username: user.name }, p
 });
 
 const login = (req, res, next) => {
+  console.log(req.body);
   const { username, password } = req.body;
   validatelogin.validateAsync(req.body).then(() => {
     getAllUsers(username).then((data) => {
@@ -52,15 +55,21 @@ const login = (req, res, next) => {
       bcrypt.compare(password, hashedPassword).then((user) => {
         if (user) {
           const token = generatetoken(user);
-          res.cookie('token', token).send();
+          res.cookie('token', token).json(req.body.username);
         } else res.status(401).json({ mg: 'wrong credintioanls' });
       });
-    }).catch((err) => next(err));
-  }).catch((err) => next(err));
+    }).catch((err) => console.log(err));
+  }).catch((err) => console.log(err));
+};
+
+const logout = (req, res) => {
+  res.clearCookie('token');
+  res.redirec('/');
 };
 
 module.exports = {
   addUser,
   hashPassword,
   login,
+  logout,
 };

@@ -1,9 +1,8 @@
-const { getQuestionController, getQuestions } = require('./questions');
-const { addUser, login } = require('./auth');
-const { getUsersData } = require('./users');
+const { getQuestionController, getQuestions, sendQuestion } = require('./questions');
+const { addUser, login, logout } = require('./auth');
+const { getUsersData, getUserProfile } = require('./users');
 const { notFound, serverError } = require('./errors');
-
-
+const { getLogin, getSignup, getQuestionsPage, profileNotSingedIn } = require('./routing');
 
 module.exports = {
   getQuestionController,
@@ -13,4 +12,11 @@ module.exports = {
   notFound,
   serverError,
   getUsersData,
+  getUserProfile,
+  logout,
+  getLogin,
+  getSignup,
+  getQuestionsPage,
+  profileNotSingedIn,
+  sendQuestion,
 };
