@@ -35,14 +35,19 @@ const sendQuestion = (req, res, next) => {
 };
 
 const sendReply = (req, res, next) => {
-  const { contnet, username } = req.body;
-  getUsersID(username).then(data => console.log(data.rows[0].id));
-  // then((data) => {
-  //   const { id } = data.rows[0];
-  //   sendNewReply(contnet, id)
-  //     .then(() => res.status(201).json('Added!'))
-  //     .catch((err) => console.log(err));
-  // });
+  const { contnet, username, questionID } = req.body;
+  getUsersID(username)
+    .then((data) => {
+      const { id } = data.rows[0];
+      sendNewReply(contnet, questionID)
+        .then(() => res.status(201).json('Added!'))
+        .catch((err) => next(err));
+    });
 };
 
-module.exports = { getQuestionController, getQuestions, sendQuestion, sendReply };
+module.exports = {
+  getQuestionController,
+  getQuestions,
+  sendQuestion,
+  sendReply,
+};
